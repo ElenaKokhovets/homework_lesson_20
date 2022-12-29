@@ -55,6 +55,7 @@ class Spravka:
         text = 'Уметь программировать клёво, жаль, что не просто '
         if True:
             return text
+
 # Тесты
 Programmer_1 = Programmer('Коховец Елена', 33, 1)
 print()
