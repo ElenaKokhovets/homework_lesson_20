@@ -46,3 +46,50 @@ print('Произведение суммы четных цифр на длину
 print('Метод 1 от строки :', vvod.method_1('Новый год'))
 
 
+# Создайте класс Company
+
+class Company:
+# Создайте статическое свойство levels, которое будет содержать (как словарь) все уровни квалификации программиста: 1:junior, 2:middle, 3:senior, 4:lead.
+    levels = {1:'junior',2:'middle',3:'senior',4:'lead'}
+# Создайте метод __init__(), внутри которого будут определены два protected свойства: 1) _index - передается параметром и 2) _levels - принимает из словаря levels значение с ключом _index
+    def __init__(self, index, level1):
+        self._index = index
+        self._levels = level1     #levels[self._index]
+# Создайте метод _level_up(), который будет переводить программиста на следующий уровень
+    def level_up (self, lev_up):
+        self._index += lev_up
+        print('Уровень повышен. Текуший уровень специалиста в компании :', self._index) #levels[self._index]
+# Создайте метод is_lead(), который будет проверять, что программист достиг последней квалификации
+    def is_lead (self, index):
+        if self._index ==0:
+            print('Уровень специалиста в компании : lead. Программист достиг последней квалификации')
+        else: print('Квалификации данного специалиста в компании может быть повышена')
+
+# Класс Programmer:
+# Создайте класс Programmer
+class Programmer(Company):
+# Создайте метод __init__(), внутри которого будут определены 3 динамических свойства: 1) name - передается параметром, является публичным, 2)age - возраст 3) level – уровень квалификации на основе словаря из Company
+    def __init__(self, name, age, index, level1):
+        super().__init__(index, level1)
+        self.name = name
+        self.age = age
+        self._levels = level1
+# Создайте метод work(), который заставляет программиста работать, что позволяет ему становиться более квалифицированным с помощью метода _level_up() родительского класса
+    def work(self, lev_up):
+        self.level_up (lev_up)
+        print('Отличная работа. Уровень специалиста повышен')
+
+# Создайте мeтод info(), который выведет информацию о вас: имя, возраст, квалификацию
+    def info(self):
+        print(f'Имя : {self.name}')
+        print(f'Возраст : {self.age}')
+        print(f'Индекс : {self._index}')
+        print(f'Уровень специалиста : {self._levels}')
+# Создайте статический метод knowledge_base(), который выведет в консоль справку по программированию (просто любой текст).
+
+Programmer_1= Programmer('Елена', 33, 1, 'junior')
+Programmer_1.info()
+Programmer_1.work(2)
+Programmer_1.is_lead(0)
+
+
